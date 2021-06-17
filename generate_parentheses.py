@@ -6,7 +6,6 @@ def generateParentheses(n):
         return dp[n]
 
     answer = []
-
     for i in range(1, int(n/2)+1):
         aList = dp[i]
         if aList is None:
@@ -20,11 +19,7 @@ def generateParentheses(n):
                 answer.append(a+b)
                 answer.append(b+a)
 
-    patterns = dp[n-1]
-    if patterns is None:
-        patterns = generateParentheses(n-1)
-
-    for pattern in patterns:
+    for pattern in dp[n-1]:
         answer.append("("+pattern+")")
     
     dp[n] = list(dict.fromkeys(answer))
