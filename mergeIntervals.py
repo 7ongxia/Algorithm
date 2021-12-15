@@ -19,4 +19,3 @@ class Solution:
         ans.append(before)
         
         return ans
-            
