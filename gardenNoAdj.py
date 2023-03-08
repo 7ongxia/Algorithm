@@ -22,18 +22,15 @@ class Solution:
                 continue
             # BFS
             if nodeColor[node] == None:
-                nodeColor[node] = 1
                 queue = collections.deque([node])
                 while queue:
                     nodeFrom = queue.popleft()
+                    color = [1, 2, 3, 4]
                     for nodeTo in graph[nodeFrom]:
                         if nodeColor[nodeTo] == None:
                             queue.append(nodeTo)
-                            # Add Color... efficiency sucks...
-                            color = [1, 2, 3, 4]
-                            for friend in graph[nodeTo]:
-                                if nodeColor[friend] != None and nodeColor[friend] in color:
-                                    color.remove(nodeColor[friend])
-                            nodeColor[nodeTo] = color[0]
+                        elif nodeColor[nodeTo] in color:
+                            color.remove(nodeColor[nodeTo])
+                    nodeColor[nodeFrom] = color[0]
 
         return nodeColor[1:]
